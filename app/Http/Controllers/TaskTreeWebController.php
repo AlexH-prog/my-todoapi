@@ -6,13 +6,17 @@ use App\Models\Task;
 use App\Services\V1\TreeService;
 use Illuminate\Http\Request;
 
+/**
+ * Simplified view of the task tree in a web browser.
+ */
 class TaskTreeWebController
 {
     /**
-     * @return void
+     * Simplified view of the task tree in a web browser.
      * Example url: http://localhost:8876/tree-web
      * Type of request: GET
-     * Simplified tree view of tasks in a web browser.
+     *
+     * @return void
      */
     public static function index()
     {
@@ -23,9 +27,10 @@ class TaskTreeWebController
     }
 
     /**
+     * Forming the task tree array recursively.
+     *
      * @param $data
      * @return array
-     * Forming the task tree array recursively
      */
     public static function getTreeTasks($data)
     {
@@ -42,7 +47,7 @@ class TaskTreeWebController
 
     /**
      * Rendering a simple tasks tree in a web browser.
-     * For simplicity, I don't use the "resources/views" folders.
+     * For simplicity, I don't use the "views" folders.
      */
     public static function createViewTreeTasks($tree)
     {

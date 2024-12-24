@@ -13,23 +13,25 @@ use Illuminate\Http\Request;
 class TaskController extends BaseController
 {
     /**
-     * @return TaskCollection
+     * Get a list of all tasks.
      * Example url: http://localhost:8876/api/v1/tasks
      * Type of request: GET
-     * Getting a list of tasks.
+     *
+     * @return TaskCollection
      */
     public function index()
     {
-       //return new TaskCollection(Task::with('user')->paginate(5));
-        return new TaskCollection(Task::with('user')->get());
+        return new TaskCollection(Task::with('user')->paginate(5));
+        //return new TaskCollection(Task::with('user')->get());
     }
 
     /**
-     * @param TaskStoreRequest $request
-     * @return TaskResource
+     * Store a newly created task in storage.
      * Example url: http://localhost:8876/api/v1/tasks
      * Type of request: POST
-     * Store a newly created task in storage.
+     *
+     * @param TaskStoreRequest $request
+     * @return TaskResource
      */
     public function store(TaskStoreRequest $request): TaskResource
     {
@@ -38,11 +40,12 @@ class TaskController extends BaseController
     }
 
     /**
+     * Get data of the specified task.
+     * Example url (e.g.task with id=23): http://localhost:8876/api/v1/tasks/23
+     * Type of request: GET
+     *
      * @param Task $task
      * @return TaskResource
-     * Example url: http://localhost:8876/api/v1/tasks/23    (id=23)
-     * Type of request: GET
-     * Data of the specified task (id=23).
      */
     public function show(Task $task): TaskResource
     {
@@ -50,12 +53,13 @@ class TaskController extends BaseController
     }
 
     /**
+     * Update the specified task in storage.
+     * Example url (e.g. task with id=31): http://localhost:8876/api/v1/tasks/31
+     * Type of request: PUT
+     *
      * @param TaskUpdateRequest $request
      * @param Task $task
      * @return TaskResource|\Illuminate\Http\JsonResponse
-     * Example url: http://localhost:8876/api/v1/tasks/31    (id=31)
-     * Type of request: PUT
-     * Update the specified task (id=31) in storage.
      */
     public function update(TaskUpdateRequest $request, Task $task): TaskResource|\Illuminate\Http\JsonResponse
     {
@@ -63,12 +67,13 @@ class TaskController extends BaseController
     }
 
     /**
+     * Remove the specified task from storage.
+     * Example url (e.g. task with id=34): http://localhost:8876/api/v1/tasks/34
+     * Type of request: DELETE
+     *
      * @param Request $request
      * @param Task $task
      * @return \Illuminate\Http\JsonResponse
-     * Example url: http://localhost:8876/api/v1/tasks/34    (id=34)
-     * Type of request: DELETE
-     * Remove the specified task (id=34) from storage.
      */
     public function destroy(Request $request, Task $task): \Illuminate\Http\JsonResponse
     {
