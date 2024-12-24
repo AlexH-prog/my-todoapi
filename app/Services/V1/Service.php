@@ -11,14 +11,19 @@ use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
+
+
 class Service
 {
     /**
+     * This function is used by the function update() from class TaskController.
+     * This function updates the tasks only by their authorized owners and prevents
+     * setting 'status' = 'done' for tasks that have subtasks with 'status' = 'todo'
+     * and provides error information.
+     *
      * @param TaskUpdateRequest $request
      * @param $task
      * @return TaskResource|\Illuminate\Http\JsonResponse
-     * Example url: http://localhost:8876/api/v1/tasks/39    (id=39)
-     * Type of request: PUT
      */
     public function updateTask(TaskUpdateRequest $request, $task): TaskResource|\Illuminate\Http\JsonResponse
     {
@@ -51,7 +56,6 @@ class Service
             }
               $task->update($request->validated());
               return new TaskResource($task);
-           // return $task;
         }
         return response()->json([
             'title' => 'Forbidden. You can not update it!',
@@ -60,11 +64,14 @@ class Service
     }
 
     /**
+     * This function is used by the function update() from class TaskController.
+     * This function delete the tasks only by their authorized owners and only those tasks
+     * that have 'status' = 'todo'
+     * and provides error information.
+     *
      * @param $request
      * @param $task
      * @return \Illuminate\Http\JsonResponse
-     * Example url: http://localhost:8876/api/v1/tasks/35  (id=35)
-     * Type of request: DEL
      */
     public function deleteTask($request, $task): \Illuminate\Http\JsonResponse
     {

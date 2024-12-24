@@ -7,8 +7,9 @@ use App\Models\Task;
 class TreeService
 {
     /**
+     * Get array all the tasks.
+     *
      * @return array
-     * Getting data all the tasks
      */
     public function getTasks(): array
     {
@@ -17,9 +18,10 @@ class TreeService
     }
 
     /**
+     * Get a tree of all tasks.
+     *
      * @param $data
      * @return array
-     * Creating a tree of all tasks.
      */
     public function getTree($data): array
     {
@@ -46,10 +48,11 @@ class TreeService
     }
 
     /**
+     * Function used when creating a tree of tasks (in function getTree()).
+     *
      * @param $parent
      * @param $children
      * @return array
-     * Function used when creating a tree of tasks
      */
     public function organizeChildren($parent, &$children): array
     {
@@ -64,9 +67,10 @@ class TreeService
     }
 
     /**
+     * Creating two-dimensional array of each parents with their direct children.
+     *
      * @param $data
      * @return array
-     * Creating two-dimensional array of each parents with their direct children
      */
     public function ArrayParentsWithDirectChildren($data): array
     {
@@ -84,10 +88,11 @@ class TreeService
     }
 
     /**
+     * Creating a flat array by 'id_parent' of subtasks for any parent task.
+     *
      * @param $data_all_parents_nodes
      * @param $id_parent
      * @return array
-     * Creating a flat array by 'id_parent' of subtasks for any parent task.
      */
 
     function BranchOfChildTasks($data_all_parents_nodes, $id_parent): array
@@ -108,10 +113,11 @@ class TreeService
     }
 
     /**
+     * Creating flat array 'id' of all subtasks for each main tasks with $parent_id = 0
+     *
      * @param $data_all_parents_nodes
      * @param $array_parent_id_0
      * @return array
-     * Creating flat array 'id' of all subtasks for each main tasks with $parent_id = 0
      */
     public function creatArrayFromTreeForDell($data_all_parents_nodes, $array_parent_id_0): array
     {

@@ -8,14 +8,19 @@ use App\Http\Resources\TaskCollection;
 use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 
-
+/**
+ * This class is used in class FilterSortingController.
+ */
 class FilterSortService
 {
     /**
+     * This function is used in class FilterSortingController.
+     * Filter data of the tasks by 'status' (status ='done' or 'todo').
+     * Example url (e.g. 'status'='done'): http://localhost:8876/api/v1/filter-sorting?status=done
+     * Type of request: GET
+     *
      * @param $status
      * @return TaskCollection
-     * Example url: http://localhost:8876/api/v1/filter-sorting?status=done   (status=done or todo)
-     * Type of request: GET
      */
     public function filterStatus($status): TaskCollection
     {
@@ -24,10 +29,13 @@ class FilterSortService
     }
 
     /**
+     * This function is used in class FilterSortingController.
+     * Filter data of the tasks by 'priority' (priority = 1,2,3,4,5).
+     * Example url (e.g. 'priority' = 3): http://localhost:8876/api/v1/filter-sorting?priority=3
+     * Type of request: GET
+     *
      * @param $priority
      * @return TaskCollection
-     * Example url: http://localhost:8876/api/v1/filter-sorting?priority=1     (priority = 1,2,3,4,5)
-     * Type of request: GET
      */
     public function filterPriority($priority): TaskCollection
     {
@@ -35,10 +43,14 @@ class FilterSortService
     }
 
     /**
+     * This function is used in class FilterSortingController.
+     * Sort the tasks by 'priority', 'created_at', 'completed_at' and provides error information.
+     * Example url: http://localhost:8876/api/v1/filter-sorting?sorting[completed_at]=desc&sorting[priority]=asc
+     * Example url: http://localhost:8876/api/v1/filter-sorting?sorting[created_at]=asc&sorting[priority]=desc
+     * Type of request: GET
+     *
      * @param $sorting
      * @return TaskCollection|\Illuminate\Http\JsonResponse
-     * Example url: http://localhost:8876/api/v1/filter-sorting?sorting[completed_at]=desc&sorting[priority]=asc
-     * Type of request: GET
      */
     public function sortingTasks($sorting): TaskCollection|\Illuminate\Http\JsonResponse
     {
@@ -76,11 +88,14 @@ class FilterSortService
     }
 
     /**
+     * This function is used in class FilterSortingController.
+     * FilterFullText data of the tasks by 'title' or 'description'.
+     * Example url: http://localhost:8876/api/v1/filter-sorting?filter[title]=Word
+     * Example url: http://localhost:8876/api/v1/filter-sorting?filter[description]=Word
+     * Type of request: GET
+     *
      * @param $filter
      * @return TaskCollection|\Illuminate\Http\JsonResponse
-     * Example1 url: http://localhost:8876/api/v1/filter-sorting?filter[title]=Koelpin
-     * Example2 url: http://localhost:8876/api/v1/filter-sorting?filter[description]=Text
-     * Type of request: GET
      */
     public function filterFullText($filter): TaskCollection|\Illuminate\Http\JsonResponse
     {
