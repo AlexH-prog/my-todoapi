@@ -24,28 +24,27 @@ DB_PASSWORD=root
 5. Start a command prompt window or terminal in the project root folder and enter the docker run  command
 
             docker-compose up -d
-6. Create a database in MySQL with name `laravel10_dev`. This can be done in phpMyAdmin using 
-the link http://localhost:3001 with `USERNAME=root`, `PASSWORD=root`
-
-7. Grant permission to change project folders and files
-
-            sudo chmod 777 -R ./
-
-8. Run command that sets the `APP_KEY` value in `.env` file.
-
-          php artisan key:generate
-
-9. Get inside docker container run the command
+6. Get inside docker container run the command
 
           docker exec -it project_app bash
+7. Run composer install
 
-10. Make migrations and seed the table with test data
+           composer install
+8. Make migrations and seed the table with test data
 
-          php artisan migrat:fresh --seed
+           php artisan migrate:fresh --seed
+9. Grant permission to change project folders and files
 
-11. Now you can see the simplified task tree (http://localhost:8876/tree-web) in browser based on data that was entered 
-into database in step №10. 
-12. In step №10, the data of two users are entered randomly and one user with defined data. API routes use Sanctum, 
+           sudo chmod 777 -R ./
+10. Run command that sets the `APP_KEY` value in `.env` file.
+
+           php artisan key:generate
+
+11. Using phpMyAdmin you can see the created database `laravel10_dev` 
+at the link http://localhost:3001 with `USERNAME=root`, `PASSWORD=root`.
+12.  Now also you can see the simplified [task tree](http://localhost:8876/tree-web) (http://localhost:8876/tree-web) in browser based on data that was entered
+    into database in step №8.
+13. In step №8, the data of two users are entered randomly and one user with defined data. API routes use Sanctum, 
 so you need to log in with the user data below and get an API token.
 ```php
 {
