@@ -11,6 +11,8 @@ class BaseController extends Controller
 {
     public object $service;
     public object $tree_service;
+    public object $filtersort_service;
+
 
     public function __construct(Service $service, TreeService $tree_service, FilterSortService $filtersort_service)
     {

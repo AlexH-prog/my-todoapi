@@ -55,7 +55,7 @@ class TaskController extends BaseController
     /**
      * Update the specified task in storage.
      * Example url (e.g. task with id=31): http://localhost:8876/api/v1/tasks/31
-     * Type of request: PUT
+     * Type of request: PATCH
      *
      * @param TaskUpdateRequest $request
      * @param Task $task
