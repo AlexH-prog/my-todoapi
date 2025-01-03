@@ -18,5 +18,3 @@ Route::get('/', function () {
 });
 
 Route::get('tree-web', [ \App\Http\Controllers\TaskTreeWebController::class,'index']);
-// Route::get('tree', [ \App\Http\Controllers\TreeController::class,'index']);
-
